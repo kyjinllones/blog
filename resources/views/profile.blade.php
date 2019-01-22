@@ -23,32 +23,34 @@
                                 @endif
                             </div>
                         </div>
-
                         <div class="form-group row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('Address') }}</label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
 
                             <div class="col-md-6">
-                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required>
+                                <input id="gender" 
+                                type="gender" 
+                                class="form-control{{ $errors->has('gender') ? 
+                                ' is-invalid' : '' }}" name="gender" required>
 
-                                @if ($errors->has('address'))
+                                @if ($errors->has('gender'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('address') }}</strong>
+                                        <strong>{{ $errors->first('gender') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="secondary_email_address" class="col-md-4 col-form-label text-md-right">{{ __('Secondary Email Address') }}</label>
+                            <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('BirthDate') }}</label>
 
                             <div class="col-md-6">
-                                <input id="secondary_email_address" 
-                                type="secondary_email_address" 
-                                class="form-control{{ $errors->has('secondary_email_address') ? 
-                                ' is-invalid' : '' }}" name="secondary_email_address" required>
+                                <input id="birthdate" 
+                                type="birthdate" 
+                                class="form-control{{ $errors->has('birthdate') ? 
+                                ' is-invalid' : '' }}" name="birthdate" required>
 
-                                @if ($errors->has('secondary_email_address'))
+                                @if ($errors->has('birthdate'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('secondary_email_address') }}</strong>
+                                        <strong>{{ $errors->first('birthdate') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -69,50 +71,57 @@
                                 @endif
                             </div>
                         </div>
+                            
+                        
+                        <h3>Places You've Lived</h3><br>
+                        <strong>CURRENT CITY AND HOMETOWN</strong>
                         <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('CURRENT CITY AND HOMETOWN') }}</label>
 
                             <div class="col-md-6">
-                                <input id="gender" 
-                                type="gender" 
-                                class="form-control{{ $errors->has('gender') ? 
-                                ' is-invalid' : '' }}" name="gender" required>
+                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required>
 
-                                @if ($errors->has('gender'))
+                                @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('gender') }}</strong>
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+                        <strong>OTHER PLACES LIVED</strong>
+
                         <div class="form-group row">
-                            <label for="birthdate" class="col-md-4 col-form-label text-md-right">{{ __('Birthdate') }}</label>
+
+                            <label for="address" class="col-md-4 col-form-label text-md-right">{{ __('OTHER PLACES LIVED') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birthdate" 
-                                type="birthdate" 
-                                class="form-control{{ $errors->has('birthdate') ? 
-                                ' is-invalid' : '' }}" name="birthdate" required>
+                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" required>
 
-                                @if ($errors->has('birthdate'))
+                                @if ($errors->has('address'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('birthdate') }}</strong>
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
+            
+                        
+                        
+                        <strong>ABOUT YOU</strong>
                          <div class="form-group row">
-                            <label for="marital_status" class="col-md-4 col-form-label text-md-right">{{ __('Marital_Status') }}</label>
+                            <label for="ABOUT" class="col-md-4 col-form-label text-md-right">{{ __('ABOUT YOU') }}</label>
 
                             <div class="col-md-6">
-                                <input id="marital_status" 
-                                type="marital_status" 
-                                class="form-control{{ $errors->has('marital_status') ? 
-                                ' is-invalid' : '' }}" name="marital_status" required>
+                                <textarea id="ABOUT" 
+                                type="ABOUT" 
+                                class="form-control{{ $errors->has('ABOUT') ? 
+                                ' is-invalid' : '' }}" name="ABOUT" required>
+                                </textarea>
 
-                                @if ($errors->has('marital_status'))
+                                @if ($errors->has('ABOUT'))
                                     <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('marital_status') }}</strong>
+                                        <strong>{{ $errors->first('ABOUT') }}</strong>
                                     </span>
                                 @endif
                             </div>

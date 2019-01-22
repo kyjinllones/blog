@@ -47,6 +47,7 @@ Route::middleware(['auth.basic'])->group(function(){
 
 
 });
+//Profile
 Route::get('profile','ProfileController@profile');
 Route::post('profile/add','ProfileController@addProfile');
 
