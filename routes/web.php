@@ -30,6 +30,7 @@ Route::put('posts/{id}/update','PostsController@update')->name('post.update')
 Route::get('/posts/{id}/details/{title}', 
   'PostsController@view_details')
     ->name('post.details');
+
 Route::middleware(['auth.basic'])->group(function(){
   Route::get('posts/{id}/edit','PostsController@edit')
   ->name('post.edit');
@@ -41,12 +42,18 @@ Route::middleware(['auth.basic'])->group(function(){
     //comment routing map
 
     Route::post('post/{user_id}/{post_id}/comment',
-       'CommentsController@store')->name('post.comment');
+   
+      'CommentsController@store')->name('post.comment');
+
 
 });
+Route::get('profile','ProfileController@profile');
+Route::post('profile/add','ProfileController@addProfile');
 
-Route::get('/comment/{id}/like','LikeController@like')
-    ->name('like.like');
-Route::get('/comment/{id}/dislike','LikeController@like')
-    ->name('like.dislike');
+//Like routing map
+Route::get('comment/{id}/like','LikesController@like')
+       ->name('comment.like');
+Route::get('comment/{id}/dislike','LikesController@dislike')
+       ->name('comment.dislike');       
+
 

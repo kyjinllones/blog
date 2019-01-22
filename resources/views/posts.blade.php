@@ -1,8 +1,8 @@
 @extends('index')
 @section('content')
 
-<div class="col-md-7">
-    <table  class="table">
+<div class="col-lg-7">
+    <table  class="table" >
         <thead class=" thead-dark text-info">
             <th>User</th>
             <th class="">Post ID</th>
