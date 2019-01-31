@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,6 +11,7 @@ use App\Comment;
 use App\Like;
 class User extends Authenticatable
 {
+    use SoftDeletes;
     use Notifiable;
 
     /**
@@ -29,10 +31,18 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+     
+    public function profile(){
+        return $this->hasOne(App\Profile::class);
+    }
 
     public function posts(){
        return $this->hasMany(Post::class);
     }
+    
+    //with Trashed
+
+
 
     public function comments(){
         return $this->hasMany(Comment::class);
@@ -40,9 +50,5 @@ class User extends Authenticatable
 
     public function likes(){
         return $this->hasMany(Like::class);
-    }
-      public function Profile()
-    {
-        return $this->hasOne('App\Profile');
     }
 }

@@ -18,8 +18,9 @@ class CreatePostTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('title');
             $table->string('content');
+            $table->softDeletes();
             $table->foreign('user_id')
-                  ->references('id')->on('users');
+                  ->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
