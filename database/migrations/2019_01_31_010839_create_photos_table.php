@@ -16,8 +16,12 @@ class CreatePhotosTable extends Migration
         Schema::create('photos', function (Blueprint $table) {
             $table->increments('id');
             $table->string('prof_pic');
+            $table->unsignedInteger('user_id');
             $table->softDeletes();
+            $table->boolean('status');
             $table->timestamps();
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade');
         });
     }
 

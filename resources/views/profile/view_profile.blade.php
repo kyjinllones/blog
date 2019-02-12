@@ -1,50 +1,47 @@
 @extends('index')
 @section('content')
-	<h1>My Profile</h1>
-	<style type="text/css">
-	img{
-		width:100px;
-		height:100px;
-		max-height:300px;
-		max-width:200px;
-		border-radius: 50%;
-		position: right;
-		float: relative;
-
-	}
+<h1>My Profile</h1>
+<style>
+img{
+	width: 50px;
+	height: 50px;
+	max-height: 300px;
+	max-width: 200px;
+	border-radius: 50%;
+	float: right;
+	position: relative;
+}
+</style>
+<div class=" col-sm-6">
+	<div class="alert-success">
+		 @foreach(Auth::user()->photos as $photo)
+    @if($photo->status=='Current')
+     <img src="{{ $photo->prof_pic }}" class="image" alt="Display Photo"  />
+     <div class="form-group">
+        <button id="upload_pic" class="btn btn-small btn-primary">Upload Photo</button>
+        <button id="select_pic" class="btn btn-small btn-secondary">Select from Gallery</button>
+     </div>
+    @endif
+    @endforeach
+		<span class="text-success">Name:
+			<strong> {{ Auth::user()->name }}</strong>
+		</span><br>
+		<span class="text-info">Email:
+			<strong> {{ Auth::user()->email }}</strong>
+		</span><br>
 		
-	</style>
+		<br>
+		<span class="text-success text-capitalize">Address:
+			<strong> {{ $profile->address }}</strong>
+		</span><br>
+		<span class="text-success">Age:
+			<strong> {{ $profile->age }}</strong>
+		</span><br>
+		<span class="text-success">Date of Birth:
+			<strong> {{ $profile->birthdate }}</strong>
+		</span>
+		
+	</div>
 	
-		<div class="jumbotron col-sm-6">
-			<div class="alert-default">
-				@foreach ($profile as $profile)
-				<img src="{{asset('storage/avatars/'.$profile->prof_pic) }}"
-				 alt="My Prof Pic"/>
-				 <br>
-			<!-- 	<span class="text-success">
-					Name:<strong>{{ Auth::user()->name}}</strong>
-				</span>
-				<br/>
-				<span class="text-info">
-					Email:<strong>{{ Auth::user()->email}}</strong>
-				</span><br/>
-				
-				<span class="text-success text-capitalize">
-					Address:<strong>{{ $profile->address}}</strong>
-				</span>
-				<br/>
-				<span class="text-success">
-					Age:<strong>{{ $profile->age}}</strong>
-				</span>
-				<br/>
-				<span class="text-success">
-					Date of Birth:<strong>{{ $profile->birthdate}}</strong>
-				</span> -->
-				@endforeach
-				
-			</div>
-				<!-- <td><a  class="btn btn-primary" href="{{route('profile.edit_details',$profile->id)}}">Edit Profile</a></td> -->
-<td><a  class="btn btn-primary" href="{{route('profile.changePhoto')}}">Change Profile</a></td>
-	
-		</div>
+</div>
 @endsection
