@@ -30,6 +30,7 @@ Route::put('posts/{id}/update','PostsController@update')->name('post.update')
 Route::get('/posts/{id}/details/{title}', 
   'PostsController@view_details')
     ->name('post.details');
+
 Route::middleware(['auth.basic'])->group(function(){
   Route::get('posts/{id}/edit','PostsController@edit')
   ->name('post.edit');
@@ -37,16 +38,31 @@ Route::middleware(['auth.basic'])->group(function(){
     ->name('post.delete');
     Route::get('posts/post/', 'PostsController@new_post')
     ->name('posts.post');
-
+    Route::get('posts/{id}/restore/','PostsController@restore')
+    ->name('post.restore');
     //comment routing map
 
     Route::post('post/{user_id}/{post_id}/comment',
        'CommentsController@store')->name('post.comment');
-
 });
 
-Route::get('/comment/{id}/like','LikeController@like')
-    ->name('like.like');
-Route::get('/comment/{id}/dislike','LikeController@like')
-    ->name('like.dislike');
+Route::get('comment/{id}/like','LikesController@like')
+       ->name('comment.like');
+Route::get('comment/{id}/dislike','LikesController@dislike')
+       ->name('comment.dislike');  
+Route::get('profile/{user_id}/view','ProfileController@index') 
+       ->name('profile');
+Route::post('profile/update','ProfileController@update')
+       ->name('profile.edit');
+Route::get('profile/friend', 'ProfileController@view_friend');
+Route::get('/profile/friend-cookie', 'ProfileController@get_cookie_friend');
 
+Route::prefix('photos')->group(function(){
+  Route::post('upload','PhotoController@upload')
+       ->name('photo.upload');
+  Route::get('{user_id}/{id}/delete', 'PhotoController@delete')
+       ->name('photo.delete');
+
+  Route::post('{user_id}/{id}/change', 'PhotoController@change')
+       ->name('photo.change');
+});

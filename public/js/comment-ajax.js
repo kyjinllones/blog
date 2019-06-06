@@ -1,13 +1,13 @@
-
 $(document).ready(function(){
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
-    });
+   
+   $.ajaxSetup({
+       headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+       }
+      });
    //submit button default disabled
    $("#comment-submit").click(function(e){
-
+      
     $(this).siblings(".status").text("Sending comment to..."+$("#comment-submit").attr('data-url'));
      
      //ajax goes here
@@ -20,54 +20,58 @@ $(document).ready(function(){
            $(this).siblings(".status").text(data.message)
         }
      }).always(function(){
-      location.reload()
+        location.reload()
      });
+
    })
-    function ajax_like(status){
-      alert(url)
-        $.ajax({
-            url:url,
-          
-            data:{status:status},
-            success:function(data){
-                alert(data.msg)
-            }
-        });
+
+   //asynchronous like
+  
+
+  function ajax_like(status, url, elmObj){
+ 
+       $.ajax({
+          url: url,
+          success: function(data){
+            elmObj.delay(500).text(data.msg)
+            elmObj.text('Unlike')
+          }
+       });
     }
-    function ajax_dislike(status){
-      alert(url)
-        $.ajax({
-            url:url,
-          ,
-            success:function(data){
-                alert(data.msg)
-            }
-        });
-    }
+   //asynchronous unlike
+   
+   
+   //like functionality 
+   //update status asynchronously
 
+   
 
-       //like functionality
-    //update status asynchronouisly
-
-    $('a.status').click(function(e){
-        var url = $(this).attr('data-url');
-        var num=parseInt($(this)).siblings(".number_likes")
-        switch($("#status").text().trim()){
+   function ajax_unlike(url, elmObj){
+     $.ajax({
+       url:url,
+       success:function(data){
+        elmObj.delay(500).text(data.msg)
+        elmObj.text('Like')
+       }
+     })
+   }
+   $('a.status').click(function(e){
+         var url=$(this).attr('data-url');
+         var num = parseInt($(this).siblings(".number-likes").text());
+         var elmObj = $(this).siblings(".number-likes")
+         switch($(this).text().trim()){
             case 'Like':
-                $(this).text('Unike');
-                num++;
-                $(this).siblings(".number_likes").text(num);
-                ajax_like(1)
-                
-                break;
-            case'Unlike':
-                $(this).text('Like');
-                new_url=url.replace('like','dislike');
-                num--;
-                 $(this).siblings(".number_likes").text(num);
-                ajax_dislike(new_url);
-                break;
-        }
+              num++;
+              elmObj.text(num);
+              ajax_like(1,url,$(this));
+              break;
+            case 'Unlike':
+              num--;
+              url=url.replace('like','dislike')
+              elmObj.text(num);
+              ajax_unlike(url, $(this)); 
+              break;
 
-    })
+        }
+     })
 })
